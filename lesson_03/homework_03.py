@@ -100,9 +100,9 @@ c) {c}  f) {f}
 Вода            3           21 грн
 """
 print("\nЗадача 08")
-big_pizza = (4, 247)
+big_pizza = (4, 274)
 middle_pizza = (2, 218)
-juice = (4, 25)
+juice = (4, 35)
 pie = (1, 350)
 water = (3, 21)
 
@@ -158,19 +158,12 @@ distance = 1600
 fuel_consumption = 9
 fuel_tank_capacity = 48
 
-if distance % fuel_consumption == 0:
-    fuel_amount = distance // fuel_consumption
-else:
-    fuel_amount = distance // fuel_consumption + 1
-
-if fuel_amount % fuel_tank_capacity == 0:
-    number_of_fuel_stops = fuel_amount // fuel_tank_capacity
-else:
-    number_of_fuel_stops = fuel_amount // fuel_tank_capacity + 1
+fuel_amount = (distance // 100) * fuel_consumption
+number_of_fuel_stops = fuel_amount // fuel_tank_capacity
 
 print(f"""Для подорожі з Харкова в Будапешт буде потрібно
-{fuel_amount} літрів бензину
-{number_of_fuel_stops} зупинок на заправку
+({distance} / 100) * 9, тобто {fuel_amount} літрів бензину.
+З цього можна вирахувати що потрібно {number_of_fuel_stops} що дорівнює {fuel_amount} літрів / {fuel_tank_capacity} літрів
 """)
 
 
