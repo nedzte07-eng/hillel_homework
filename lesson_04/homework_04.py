@@ -87,13 +87,12 @@ print(adwentures_of_tom_sawer_sentences[3].lower())
 """ Перевірте чи починається якесь речення з "By the time".
 """
 print("\n")
-count = 0
-for sentence in adwentures_of_tom_sawer_sentences:
-    count += 1
+
+for index, sentence in enumerate(adwentures_of_tom_sawer_sentences):
     if sentence.startswith("By the time"):
-        print(f"Речення {count} починається з \"By the time\"")
+        print(f"Речення {index+1} починається з \"By the time\"")
     else:
-        print(f"Речення {count} не починається з \"By the time\"")
+        print(f"Речення {index+1} не починається з \"By the time\"")
 
 # task 10
 """ Виведіть кількість слів останнього речення з adwentures_of_tom_sawer_sentences.
