@@ -44,22 +44,20 @@ car_data = {
   'Ford F-Series': ('gray', 2021, 3.5, 'pickup', 50000),
   'Nissan Titan': ('silver', 2018, 5.6, 'pickup', 35000)
 }
-search_criteria = (2017, 1.6, 36000)
+SEARCH_CRITERIA = (2017, 1.6, 36000)
 
 dict_of_found_cars = {}
 
 for key, value in car_data.items():
-  if value[1] >= search_criteria[0] and value[2] >= search_criteria[1] and value[4] <= search_criteria[2]:
+  if value[1] >= SEARCH_CRITERIA[0] and value[2] >= SEARCH_CRITERIA[1] and value[4] <= SEARCH_CRITERIA[2]:
     dict_of_found_cars[key] = value
 
 #print(dict_of_found_cars)
 
-sorted_cars = sorted(dict_of_found_cars.items(), key=lambda item: item[1][4])
-
-#print(sorted_cars)
-sliced_list = list(sorted_cars)[0:5]
+sorted_cars = sorted(dict_of_found_cars.items(), key=lambda item: item[1][4])[0:5]
 
 print("Відсортировані машини: ")
 
-for car in sliced_list:
-  print(f"Марка машини: {car[0]}, колір {car[1][0]}, рік випуску {car[1][1]}, об'єм {car[1][2]}, кузов {car[1][3]}, ціна {car[1][4]}.")
+
+for *brand, characteristic in sorted_cars:
+  print(f"Марка машини: {brand[0]}, колір {characteristic[0]}, рік випуску {characteristic[1]}, об'єм {characteristic[2]}, кузов {characteristic[3]}, ціна {characteristic[4]}.")
