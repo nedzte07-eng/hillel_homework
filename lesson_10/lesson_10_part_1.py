@@ -21,8 +21,8 @@ class Developer(Employee):
 
 class TeamLead(Manager, Developer):
     def __init__(self, name, salary, department, team_size):
-        Manager.__init__(self, name, salary, department)
-        Developer.__init__(self, name, salary)
+        super().__init__(name, salary, department)
+        # Developer.__init__(self, name, salary)
         self.team_size = team_size
 
     def __str__(self):
