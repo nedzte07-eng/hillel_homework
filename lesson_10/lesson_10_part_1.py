@@ -1,11 +1,14 @@
+from lesson_07.some_exercices import Animal
+
+
 class Employee:
     def __init__(self, name, salary):
         self.name = name
         self.salary = salary
 
 class Manager(Employee):
-    def __init__(self, name, salary,department, programming_language):
-        super().__init__(name, salary, programming_language)
+    def __init__(self, name, salary, department):
+        Employee.__init__(self, name, salary)
         self.department = department
 
     def __str__(self):
@@ -13,7 +16,7 @@ class Manager(Employee):
 
 class Developer(Employee):
     def __init__(self, name, salary, programming_language):
-        super().__init__(name, salary)
+        Employee.__init__(self, name, salary)
         self.programming_language = programming_language
 
     def __str__(self):
@@ -21,8 +24,10 @@ class Developer(Employee):
 
 class TeamLead(Manager, Developer):
     def __init__(self, name, salary, programming_language, department, team_size):
-        super().__init__(name, salary, department, programming_language)
+        # super().__init__(name, salary, department, programming_language)
         # Developer.__init__(self, name, salary)
+        Manager.__init__(self, name, salary, department)
+        Developer.__init__(self, name, salary, programming_language)
         self.team_size = team_size
 
     def __str__(self):
