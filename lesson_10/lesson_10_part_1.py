@@ -36,7 +36,7 @@ masha = TeamLead("Masha", 2000, "JavaScript", "HR", 5)
 # dasha = Manager("Dasha", 3000, "PR")
 
 def assert_with_message (class_argument_name, class_argument_value):
-    assert class_argument_name == class_argument_value
+    assert class_argument_name == class_argument_value, (f'{class_argument_name} - not verified')
     print(f'{class_argument_name} - verified')
 
 def test_name_in_classes():
