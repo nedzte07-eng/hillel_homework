@@ -1,6 +1,3 @@
-from lesson_07.some_exercices import Animal
-
-
 class Employee:
     def __init__(self, name, salary):
         self.name = name
