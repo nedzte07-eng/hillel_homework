@@ -17,6 +17,7 @@ def totals_of_iists_items (data_list):
                 break
         if total == 'failure':
             continue
+        print(total)
         result.append(total)
     return result
 
