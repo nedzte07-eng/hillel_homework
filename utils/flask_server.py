@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, session
 from functools import wraps
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False
 app.secret_key = 'your_secret_key_here'
 
 # Демонстраційний контент (ви можете замінити це на реальну базу даних)
