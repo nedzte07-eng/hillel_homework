@@ -56,7 +56,7 @@ class TestContent:
             json=CAR_CREDENTIALS,
             headers={"Cookie": f"sid={session_cookie}"}
         )
-        assert response_car.status_code == 201, "Car was not created"
+        assert response_car.json()["status"] == "ok", "Car was not created"
 
     def test_if_car_is_present(self, session_cookie, car_id):
         print(car_id)
@@ -64,7 +64,7 @@ class TestContent:
 
     def test_deleting_a_car(self, session_cookie, car_id):
         response_car = requests.delete(f"{BASE_URL}api/cars/{car_id}", headers={"Cookie": f"sid={session_cookie}"})
-        assert response_car.status_code == 200, "Car was not deleted"
+        assert response_car.json()["status"] == "ok", "Car was not deleted"
 
     def test_if_car_is_absent(self, session_cookie):
         response_car = requests.get(
@@ -74,7 +74,7 @@ class TestContent:
 
     def test_user_logout(self, session_cookie):
         response = requests.get(f"{BASE_URL}api/auth/logout", headers={"Cookie": f"sid={session_cookie}"})
-        assert response.status_code == 200, "Logout failed"
+        assert response.json()["status"] == "ok", "Logout failed"
 
 
 
