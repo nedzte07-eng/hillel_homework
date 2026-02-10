@@ -30,19 +30,18 @@ def car_credential():
     return CAR_CREDENTIALS
 
 @pytest.fixture
-def session_cookie(base_url, auth, user_credential):
+def sign_up(base_url, auth, user_credential):
     response = requests.post(
         f"{base_url}api/auth/signin",
         auth=auth,
         json=user_credential
     )
-    assert response.status_code == 200, "Login failed"
-    return response.cookies.get("sid")
+    # return response.cookies.get("sid")
+    return response
 
 @pytest.fixture
-def car_id(session_cookie, base_url):
+def car_data(sign_up, base_url):
+    token_session = sign_up.cookies.get("sid")
     response_car = requests.get(
-        f"{base_url}api/cars", headers={"Cookie": f"sid={session_cookie}"})
-    data = response_car.json()["data"]
-    assert data, "Cars were not found"
-    return data[0]["id"]
+        f"{base_url}api/cars", headers={"Cookie": f"sid={token_session}"})
+    return response_car
