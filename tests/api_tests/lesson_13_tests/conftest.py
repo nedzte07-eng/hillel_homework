@@ -14,8 +14,8 @@ def auth():
 @pytest.fixture
 def user_credential():
     USER_CREDENTIALS = {
-        "email": "nedzelnytskyidev+hillel02026@gmail.com",
-        "password": "AYf3JtDQnAcMbnc",
+        "email": "nedzelnytskyidev+021123@gmail.com",
+        "password": "GqNeQrjRLaT8dLM",
         "remember": 'false'
     }
     return USER_CREDENTIALS

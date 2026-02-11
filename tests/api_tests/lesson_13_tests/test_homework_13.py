@@ -15,7 +15,7 @@ class TestContent:
     def test_signin_with_existence_user_200(self, sign_up):
         user_id = sign_up.json()["data"]["userId"]
         assert sign_up.status_code == 200, "Response status code is incorrect"
-        assert user_id == 328924, "User was not signed in"
+        assert user_id == 329784, "User was not signed in"
 
     @pytest.mark.external_api
     def test_adding_a_car_201(self, sign_up, base_url, auth, car_credential):
