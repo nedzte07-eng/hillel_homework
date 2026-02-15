@@ -39,7 +39,7 @@ class TestContent:
 
 
     @pytest.mark.external_api
-    def test_if_car_is_present_200(self, sign_up, car_data):
+    def test_if_car_is_present_200(self, car_data):
         data_car = car_data.json()["data"][0]
         assert car_data.status_code == 200, "Response status code is incorrect"
         assert data_car["id"] is not None, "Id was not found"

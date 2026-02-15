@@ -2,6 +2,16 @@ import os
 import pytest
 import requests
 from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger("tests.fixtures")
+logger.setLevel(logging.DEBUG)
+
+# Додаємо хендлер для консолі
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(message)s"))
+logger.addHandler(console_handler)
+
 
 load_dotenv(dotenv_path="utils/.env")
 
@@ -35,6 +45,10 @@ def car_credential():
 
 @pytest.fixture
 def sign_up(base_url, auth, user_credential):
+    logger.info('-' * 80)
+    logger.info('Setting up OUR FIXTURE[sign_up]')
+    logger.info('-' * 80)
+    logger.info(f'Request on URL {base_url}api/auth/signin with Method: POST')
     response = requests.post(
         f"{base_url}api/auth/signin",
         auth=auth,
