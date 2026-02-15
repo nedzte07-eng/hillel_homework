@@ -1,9 +1,13 @@
+import os
 import pytest
 import requests
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="utils/.env")
 
 @pytest.fixture
 def base_url():
-    BASE_URL = "https://qauto.forstudy.space/"
+    BASE_URL = os.getenv("API_URL")
     return BASE_URL
 
 @pytest.fixture
@@ -14,8 +18,8 @@ def auth():
 @pytest.fixture
 def user_credential():
     USER_CREDENTIALS = {
-        "email": "nedzelnytskyidev+021123@gmail.com",
-        "password": "GqNeQrjRLaT8dLM",
+        "email": os.getenv("EMAIL"),
+        "password": os.getenv("PASSWORD"),
         "remember": 'false'
     }
     return USER_CREDENTIALS
