@@ -54,8 +54,19 @@ def sign_up(base_url, auth, user_credential):
         auth=auth,
         json=user_credential
     )
-    # return response.cookies.get("sid")
-    return response
+    assert response.status_code == 200, "Login failed"
+
+    yield response
+
+    logger.info('-' * 80)
+    logger.info('Logging out with OUR FIXTURE[sign_up]')
+    logger.info('-' * 80)
+    logger.info(f'Request on URL {base_url}api/auth/logout with Method: GET')
+
+    token_session = response.cookies.get('sid')
+
+    response = requests.get(f"{base_url}api/auth/logout", headers={"Cookie": f"sid={token_session}"})
+    assert response.status_code == 200, "Logout failed"
 
 @pytest.fixture
 def car_data(sign_up, base_url):

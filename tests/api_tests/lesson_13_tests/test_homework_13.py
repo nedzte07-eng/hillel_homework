@@ -38,6 +38,7 @@ class TestContent:
         assert data_car["logo"] == "bmw.png"
 
 
+
     @pytest.mark.external_api
     def test_if_car_is_present_200(self, car_data):
         data_car = car_data.json()["data"][0]
@@ -64,9 +65,9 @@ class TestContent:
 
     @pytest.mark.external_api
     def test_if_car_is_absent_200(self, sign_up, base_url):
-        sid = sign_up.cookies.get("sid")
+        token_session = sign_up.cookies.get("sid")
         response_car = requests.get(
-            f"{base_url}api/cars", headers={"Cookie": f"sid={sid}"})
+            f"{base_url}api/cars", headers={"Cookie": f"sid={token_session}"})
         data = response_car.json()["data"]
         assert response_car.status_code == 200, "Response status code is incorrect"
         assert data == [], "Cars were found"
