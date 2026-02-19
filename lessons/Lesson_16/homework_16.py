@@ -1,8 +1,12 @@
+from pathlib import Path
 import csv
+import os
 
 import xmltodict
+import json
 
-from constant import INITIAL_DATA_XMLS_LESSON_16, INITIAL_DATA_CSVS_LESSON_16, PROCESSED_DATA_CSVS_LESSON_16
+from constant import INITIAL_DATA_XMLS_LESSON_16, INITIAL_DATA_CSVS_LESSON_16, INITIAL_DATA_JSONS_LESSON_16, \
+    PROCESSED_DATA_CSVS_LESSON_16
 import logging
 
 logger = logging.getLogger(__name__)
@@ -29,7 +33,7 @@ with open(INITIAL_DATA_XMLS_LESSON_16 / 'groups.xml', mode='r') as file:
     logger.info(f"timingExbytes/incoming: {incoming_values}")
 
 
-def csv_unduplicates(filename = 'r-m-c.csv'):
+def csv_unduplicates(filename='r-m-c.csv'):
     unduplicates_csv = []
     with open(INITIAL_DATA_CSVS_LESSON_16 / filename, mode='r') as file:
         csv_reader = csv.reader(file)
@@ -39,11 +43,36 @@ def csv_unduplicates(filename = 'r-m-c.csv'):
 
     headers = unduplicates_csv[0]
     payload = unduplicates_csv[1:]
-    with open(PROCESSED_DATA_CSVS_LESSON_16 / filename, mode='w', newline="") as file:
+    with open(PROCESSED_DATA_CSVS_LESSON_16 / f'nedzelnytskyi_{filename}', mode='w', newline="") as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         for row in payload:
             writer.writerow(row)
 
+
 csv_unduplicates()
 csv_unduplicates('random-michaels.csv')
+
+
+
+def is_valid_json(file_json: str) -> bool:
+    try:
+        path = Path(INITIAL_DATA_JSONS_LESSON_16) / file_json
+        with path.open("r", encoding="utf-8") as f:
+            json.load(f)
+        return True
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print("Failure:", e)
+        return False
+
+
+
+for pass_to_file, _, files in os.walk(INITIAL_DATA_JSONS_LESSON_16):
+    if '.venv' in pass_to_file:
+        continue
+
+    for file in files:
+        if file.endswith('.json'):
+            json_name = file
+            print(json_name)
+            print(is_valid_json(json_name))
