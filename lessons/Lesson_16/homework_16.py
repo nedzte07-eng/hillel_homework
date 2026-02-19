@@ -55,10 +55,9 @@ csv_unduplicates('random-michaels.csv')
 
 
 
-def is_valid_json(file_json: str) -> bool:
+def is_valid_json(file_json: str ) -> bool:
     try:
-        path = Path(INITIAL_DATA_JSONS_LESSON_16) / file_json
-        with path.open("r", encoding="utf-8") as f:
+        with open(INITIAL_DATA_JSONS_LESSON_16/file_json, "r", encoding="utf-8") as f:
             json.load(f)
         return True
     except (json.JSONDecodeError, FileNotFoundError) as e:
@@ -75,4 +74,5 @@ for pass_to_file, _, files in os.walk(INITIAL_DATA_JSONS_LESSON_16):
         if file.endswith('.json'):
             json_name = file
             print(json_name)
+            print(type(json_name))
             print(is_valid_json(json_name))
