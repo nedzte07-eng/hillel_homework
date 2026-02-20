@@ -47,9 +47,25 @@ def csv_unduplicates(filename='r-m-c.csv'):
         for row in payload:
             writer.writerow(row)
 
+def csv_unduplicates_use_set(filename='random-michaels.csv'):
 
-csv_unduplicates()
-csv_unduplicates('random-michaels.csv')
+    with open(INITIAL_DATA_CSVS_LESSON_16 / filename, mode='r') as f:
+        csv_reader = csv.reader(f)
+        headers = next(csv_reader)
+        rows = [tuple(row) for row in csv_reader]
+
+    payload = list(set(rows))
+
+
+    with open(PROCESSED_DATA_CSVS_LESSON_16 / f'nedzelnytskyi_{filename}', mode='w', newline="", encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        writer.writerows(payload)
+
+
+
+csv_unduplicates('r-m-c.csv')
+csv_unduplicates_use_set('random-michaels.csv')
 
 
 def is_valid_json(file_json: str) -> bool:
