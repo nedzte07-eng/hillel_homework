@@ -1,26 +1,24 @@
-from pathlib import Path
 import csv
 import os
+import logging
 
 import xmltodict
 import json
 
 from constant import INITIAL_DATA_XMLS_LESSON_16, INITIAL_DATA_CSVS_LESSON_16, INITIAL_DATA_JSONS_LESSON_16, \
-    PROCESSED_DATA_CSVS_LESSON_16
-import logging
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-console_handler.setFormatter(formatter)
-
-logger.addHandler(console_handler)
+    PROCESSED_DATA_CSVS_LESSON_16, PROCESSED_DATA_JSONS_LESSON_16
 
 with open(INITIAL_DATA_XMLS_LESSON_16 / 'groups.xml', mode='r') as file:
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
     # logger.info(f"Path to XMLs: {INITIAL_DATA_XMLS_LESSON_16}")
     data_xml = file.read()
     data_xml_parse = xmltodict.parse(data_xml)
@@ -54,16 +52,21 @@ csv_unduplicates()
 csv_unduplicates('random-michaels.csv')
 
 
+def is_valid_json(file_json: str) -> bool:
+    logging.basicConfig(
+        filename=PROCESSED_DATA_JSONS_LESSON_16 / "json_nedzelnytskyi.log",
+        level=logging.ERROR,
+        format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
-def is_valid_json(file_json: str ) -> bool:
     try:
-        with open(INITIAL_DATA_JSONS_LESSON_16/file_json, "r", encoding="utf-8") as f:
+        with open(INITIAL_DATA_JSONS_LESSON_16 / file_json, "r", encoding="utf-8") as f:
             json.load(f)
         return True
     except (json.JSONDecodeError, FileNotFoundError) as e:
         print("Failure:", e)
+        logging.error("Failure in file %s: %s", file_json, e)
         return False
-
 
 
 for pass_to_file, _, files in os.walk(INITIAL_DATA_JSONS_LESSON_16):
@@ -74,5 +77,4 @@ for pass_to_file, _, files in os.walk(INITIAL_DATA_JSONS_LESSON_16):
         if file.endswith('.json'):
             json_name = file
             print(json_name)
-            print(type(json_name))
             print(is_valid_json(json_name))
