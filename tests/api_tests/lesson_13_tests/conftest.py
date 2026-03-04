@@ -13,7 +13,7 @@ console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(mes
 logger.addHandler(console_handler)
 
 
-load_dotenv(dotenv_path="utils/.env")
+load_dotenv()
 
 @pytest.fixture
 def base_url():

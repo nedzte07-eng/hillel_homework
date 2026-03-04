@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 from dotenv import load_dotenv
 
 # Завантажуємо змінні середовища
-load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hillel_homework\utils\.env")
+load_dotenv()
 
 BASE_URL = os.getenv("RC1_ORION")
 if not BASE_URL:
@@ -43,7 +43,7 @@ async def run():
         cookies = await context.cookies()
         session_cookie = next((c for c in cookies if c["name"] == "orion_rc_1_session"), None)
         if session_cookie:
-            print("Session token:", session_cookie["value"])
+            print(f"Session token: {session_cookie["value"]}" )
         else:
             print("⚠️ Cookie 'orion_rc_1_session' не знайдено")
 
