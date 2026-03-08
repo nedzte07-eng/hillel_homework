@@ -5047,7 +5047,7 @@
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:48 Key TSTFEED0010|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:48 Key TSTFEED0005|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:48 Key TSTFEED0003|7E3E|0400 TradePrice 5 TradeSize 0 }
-{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:19 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:17 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:17 Key TSTFEED0240|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:17 Key TSTFEED0120|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:54:17 Key TSTFEED0090|7E3E|0400 TradePrice 5 TradeSize 0 }
@@ -5553,7 +5553,7 @@
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:37 Key TSTFEED0010|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:37 Key TSTFEED0005|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:37 Key TSTFEED0003|7E3E|0400 TradePrice 5 TradeSize 0 }
-{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:10 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:07 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:07 Key TSTFEED0240|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:07 Key TSTFEED0120|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:31:07 Key TSTFEED0090|7E3E|0400 TradePrice 5 TradeSize 0 }
@@ -5861,7 +5861,7 @@
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:17:30 Key TSTFEED0010|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:17:30 Key TSTFEED0005|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:17:30 Key TSTFEED0003|7E3E|0400 TradePrice 5 TradeSize 0 }
-{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:17:02 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:16:59 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:16:59 Key TSTFEED0240|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:16:59 Key TSTFEED0120|7E3E|0400 TradePrice 5 TradeSize 0 }
 { Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:16:59 Key TSTFEED0090|7E3E|0400 TradePrice 5 TradeSize 0 }

@@ -33,7 +33,7 @@ for i in range(len(time_array) - 1):
     delta_time_array.append(delta_time)
     if 31 < delta_time < 33:
         logging.warning(f'{time_array[i].strip()} delta {delta_time}')
-    elif delta_time == 33:
+    elif delta_time >= 33:
         logging.error(f'{time_array[i].strip()} delta {delta_time}')
 
 print('hi')
