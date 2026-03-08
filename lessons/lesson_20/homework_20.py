@@ -1,5 +1,3 @@
-from lessons.lesson_07.some_exercices import timestamp
-import time
 import logging
 from datetime import timedelta, datetime
 
@@ -35,5 +33,3 @@ for i in range(len(time_array) - 1):
         logging.warning(f'{time_array[i].strip()} delta {delta_time}')
     elif delta_time >= 33:
         logging.error(f'{time_array[i].strip()} delta {delta_time}')
-
-print('hi')
