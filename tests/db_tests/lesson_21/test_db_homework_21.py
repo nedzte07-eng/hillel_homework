@@ -1,9 +1,6 @@
+def test_add_dog(cursor_con):
 
-
-
-def test_add_dog(cursor):
-
-
+    cursor, conn = cursor_con
     cursor.execute('''INSERT INTO public.dogs ("name", breed) VALUES ('Nora', 'Cane Corso') returning id''')
     dog_id = cursor.fetchone()[0]
 
@@ -11,3 +8,5 @@ def test_add_dog(cursor):
     name_ar = cursor.fetchone()[0]
 
     assert 'Nora' == name_ar
+    conn.commit()
+

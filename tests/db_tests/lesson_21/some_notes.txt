@@ -1,0 +1,39 @@
+from unicodedata import category
+
+CREATE TABLE public.dogs (
+	id serial4 NOT NULL,
+	name varchar NULL,
+	breed varchar NULL,
+	CONSTRAINT dogs_pk PRIMARY KEY (id)
+);
+
+INSERT INTO public.dogs (id, "name", breed) VALUES (1, 'Nika', 'Frech Bulldog');
+
+
+CREATE TABLE public.products (
+	id serial4 NOT NULL,
+	"name" varchar NOT NULL,
+	description varchar NULL,
+	price int DEFAULT 1 NOT NULL,
+	CONSTRAINT products_pk PRIMARY KEY (id),
+	CONSTRAINT products_unique UNIQUE ("name"),
+	category varchar
+);
+
+ALTER TABLE public.products ADD category varchar NULL;
+
+
+
+CREATE TABLE public.categories (
+	categoty varchar NOT NULL,
+	storage_condition varchar NOT NULL,
+	CONSTRAINT categories_pk PRIMARY KEY (categoty)
+);
+
+ALTER TABLE public.products ADD CONSTRAINT products_categories_fk FOREIGN KEY (category) REFERENCES public.categories(category);
+
+
+
+
+
+
