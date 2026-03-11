@@ -20,10 +20,6 @@ CREATE TABLE public.products (
 	category varchar
 );
 
-ALTER TABLE public.products ADD category varchar NULL;
-
-
-
 CREATE TABLE public.categories (
 	categoty varchar NOT NULL,
 	storage_condition varchar NOT NULL,
