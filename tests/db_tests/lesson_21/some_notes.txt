@@ -17,18 +17,19 @@ CREATE TABLE public.products (
 	price int DEFAULT 1 NOT NULL,
 	CONSTRAINT products_pk PRIMARY KEY (id),
 	CONSTRAINT products_unique UNIQUE ("name"),
-	category varchar
+	category int NOT NULL
 );
 
 CREATE TABLE public.categories (
-	categoty varchar NOT NULL,
+	category_id serial4 NOT NULL,
+	category_name varchar NOT NULL,
 	storage_condition varchar NOT NULL,
-	CONSTRAINT categories_pk PRIMARY KEY (categoty)
+	CONSTRAINT categories_pk PRIMARY KEY (category_id)
 );
 
-ALTER TABLE public.products ADD CONSTRAINT products_categories_fk FOREIGN KEY (category) REFERENCES public.categories(category);
+ALTER TABLE public.products ADD CONSTRAINT products_categories_fk FOREIGN KEY (category) REFERENCES public.categories(category_id);
 
-
+select "name", category_name from public.products join public.categories on public.products.category = public.categories.category_id
 
 
 
