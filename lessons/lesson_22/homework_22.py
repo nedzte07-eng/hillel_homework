@@ -67,14 +67,16 @@ art = CoursesORM(course_name='Art')
 
 list_of_courses = [astronomy, biology, chemistry, physics, art]
 
-list_of_students = []
-count = 0
 fake = Faker()
-while count < 20:
-    student = StudentsORM(name=fake.first_name(), age=random.randint(18, 24),
-                          courses=random.sample(list_of_courses, random.randint(1, len(list_of_courses))))
-    list_of_students.append(student)
-    count += 1
+
+list_of_students = [
+    StudentsORM(
+        name=fake.first_name(),
+        age=random.randint(18, 24),
+        courses=random.sample(list_of_courses, random.randint(1, len(list_of_courses)))
+    )
+    for _ in range(20)
+]
 
 tables_list = list_of_courses + list_of_students
 
