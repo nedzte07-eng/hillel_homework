@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Search Page</h2>
+
+<form id="searchForm">
+    <input type="text" id="searchQuery" placeholder="Enter your search query">
+    <button type="button" id="searchButton" onclick="search()">Search</button>
+</form>
+
+<table id="searchResults">
+    <thead>
+        <tr>
+            <th>Search Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Search results will be added dynamically here -->
+    </tbody>
+</table>
+
+<script>
+    function search() {
+        var query = document.getElementById("searchQuery").value;
+        // Ваш код для виконання пошуку з використанням query
+
+        // Отримання таблиці для результатів пошуку
+        var table = document.getElementById("searchResults").getElementsByTagName('tbody')[0];
+
+        // Створення нового рядка для результату пошуку
+        var row = table.insertRow();
+        var cell = row.insertCell();
+        cell.textContent = query;
+
+        // Очищення поля вводу після пошуку
+        document.getElementById("searchQuery").value = "";
+    }
+</script>
+</body>
+</html>
