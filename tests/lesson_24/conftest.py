@@ -29,5 +29,13 @@ def session_sasha():
         logging.error("End of the fixture with failure")
         pytest.fail(f"Login failed with status {response.status_code}")
 
-
+    session.close()
     logging.info("End of the fixture")
+
+@pytest.fixture
+def get_car_list(session_sasha, request):
+    params = request.param
+    response = session_sasha.get(base_url + "/cars", params=params)
+    data = response.json()
+    logging.info(f"Cars response: {data}")
+    yield response

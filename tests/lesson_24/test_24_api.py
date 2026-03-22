@@ -3,17 +3,21 @@ import pytest
 
 base_url = 'http://127.0.0.1:8080'
 
-class TestCarsApi:
-    def test_get_cars(self, session_sasha):
-        response = session_sasha.get(base_url + "/cars?sort_by=price&limit=3")
-        assert response.status_code == 200
-        data = response.json()
-        logging.info(f"Cars response: {data}")
-        assert len(data) == 3
 
-    def test_get_car(self, session_sasha):
-        response = session_sasha.get(base_url + "/cars?sort_by=price&limit=8")
-        assert response.status_code == 200
-        data = response.json()
-        logging.info(f"Cars response: {data}")
-        assert len(data) == 8
+class TestCarsApi:
+
+    @pytest.mark.parametrize(
+        "get_car_list",
+        [
+            {"sort_by": "brand", "limit": 5},
+            {"sort_by": "year", "limit": 5},
+            {"sort_by": "engine_volume", "limit": 5},
+            {"sort_by": "price", "limit": 5},
+        ],
+        indirect=True
+    )
+
+    def test_get_car(self, get_car_list):
+            data = get_car_list.json()
+            assert get_car_list.status_code == 200
+            assert len(data) == 5
