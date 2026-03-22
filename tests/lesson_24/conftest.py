@@ -43,7 +43,7 @@ def get_car_list_with_parameters(session_sasha, request):
     yield response, length, sort_by
 
 @pytest.fixture
-def get_car_list(session_sasha):
+def get_full_car_list(session_sasha):
     response = session_sasha.get(base_url + "/cars")
     data_from_server = response.json()
     logging.info(f"Cars response: {data_from_server}")
