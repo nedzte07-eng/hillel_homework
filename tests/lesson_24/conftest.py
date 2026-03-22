@@ -33,9 +33,18 @@ def session_sasha():
     logging.info("End of the fixture")
 
 @pytest.fixture
-def get_car_list(session_sasha, request):
+def get_car_list_with_parameters(session_sasha, request):
     params = request.param
+    length = params["limit"]
+    sort_by = params["sort_by"]
     response = session_sasha.get(base_url + "/cars", params=params)
     data = response.json()
     logging.info(f"Cars response: {data}")
-    yield response
+    yield response, length, sort_by
+
+@pytest.fixture
+def get_car_list(session_sasha):
+    response = session_sasha.get(base_url + "/cars")
+    data_from_server = response.json()
+    logging.info(f"Cars response: {data_from_server}")
+    yield data_from_server
