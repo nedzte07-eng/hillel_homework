@@ -19,5 +19,9 @@ def test_order_page(ui_login):
     expect(ui_login.locator("//span[text()='Orders']")).to_be_visible()
     ui_login.click("//span[text()='Orders']")
     expect(ui_login).to_have_url(f"{BASE_URL}/order")
+    expect(ui_login.locator("a[href*='/admin/order/create']")).to_be_visible()
+    ui_login.click("a[href*='/admin/order/create']")
+    expect(ui_login).to_have_url(f"{BASE_URL}/order/create")
+
 
 

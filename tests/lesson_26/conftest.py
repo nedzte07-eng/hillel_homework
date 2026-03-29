@@ -1,7 +1,6 @@
 import os
 import pytest
 from dotenv import load_dotenv
-from playwright.sync_api import Page
 
 load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hillel_homework\.env")
 
@@ -24,10 +23,10 @@ def logged_in_context(browser):
     page.click('button[type="submit"]')
     # після логіну cookies вже збережені в context
     page.close()
-    return context
+    yield context
 
 @pytest.fixture(scope="function")
 def ui_login(logged_in_context):
     page = logged_in_context.new_page()
     page.goto(f"{BASE_URL}")
-    return page
+    yield page
