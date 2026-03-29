@@ -25,8 +25,11 @@ def logged_in_context(browser):
     page.close()
     yield context
 
+
 @pytest.fixture(scope="function")
 def ui_login(logged_in_context):
+    logged_in_context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = logged_in_context.new_page()
     page.goto(f"{BASE_URL}")
     yield page
+    logged_in_context.tracing.stop(path="trace.zip")
