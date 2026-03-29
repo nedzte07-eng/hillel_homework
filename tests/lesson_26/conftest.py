@@ -13,20 +13,21 @@ BASIC_AUTH_PASS = os.getenv("RC1_ORION_BASIC_PASS")
 
 
 @pytest.fixture(scope="session")
-def browser_context_args(browser_context_args):
-    return {
-        **browser_context_args,
-        "http_credentials": {
-            "username": BASIC_AUTH_USER,
-            "password": BASIC_AUTH_PASS
-        }
-    }
-
-
-@pytest.fixture(scope="function")
-def ui_login(page: Page):
+def logged_in_context(browser):
+    context = browser.new_context(
+        http_credentials={"username": BASIC_AUTH_USER, "password": BASIC_AUTH_PASS}
+    )
+    page = context.new_page()
     page.goto(f"{BASE_URL}/login")
     page.fill('input[name="email"]', USER_EMAIL)
     page.fill('input[name="password"]', USER_PASSWORD)
     page.click('button[type="submit"]')
+    # після логіну cookies вже збережені в context
+    page.close()
+    return context
+
+@pytest.fixture(scope="function")
+def ui_login(logged_in_context):
+    page = logged_in_context.new_page()
+    page.goto(f"{BASE_URL}")
     return page

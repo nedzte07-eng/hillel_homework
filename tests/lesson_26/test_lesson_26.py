@@ -14,3 +14,10 @@ def test_check_login(ui_login):
 
     expect(ui_login.locator("span.account-user-name")).to_have_text("Sasha Nedzelnytsky")
 
+def test_order_page(ui_login):
+    expect(ui_login).to_have_url(f"{BASE_URL}")
+    expect(ui_login.locator("//span[text()='Orders']")).to_be_visible()
+    ui_login.click("//span[text()='Orders']")
+    expect(ui_login).to_have_url(f"{BASE_URL}/order")
+
+
