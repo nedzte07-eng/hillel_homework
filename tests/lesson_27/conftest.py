@@ -26,8 +26,23 @@ def browser_context_args(browser_context_args):
 
 
 
+# @pytest.fixture(scope="function")
+# def ui_login(page: Page):
+#     page.goto('')
+#     page.locator('//button[@class="btn btn-outline-white header_signin"]').click()
+#     page.get_by_role("textbox", name="Email").fill(str(login))
+#     assert page.get_by_role("textbox", name="Email").input_value() == str(login)  # check if input field is fill 'STR'
+#     page.get_by_role("textbox", name="Password").fill(password)
+#     assert page.get_by_role("textbox", name="Password").input_value() == password
+#     page.get_by_role("button", name="Login").click()
+#     element_notify = page.locator('//div[@class="alert alert-success"]/p')
+#     expect(element_notify).to_have_text("You have been successfully logged in")
+#     assert element_notify.inner_text() == "You have been successfully logged in"
+#     page.reload()
+#     return page
+
 @pytest.fixture(scope="function")
-def ui_login(page: Page):
+def create_car(page: Page):
     page.goto('')
     page.locator('//button[@class="btn btn-outline-white header_signin"]').click()
     page.get_by_role("textbox", name="Email").fill(str(login))
@@ -38,6 +53,13 @@ def ui_login(page: Page):
     element_notify = page.locator('//div[@class="alert alert-success"]/p')
     expect(element_notify).to_have_text("You have been successfully logged in")
     assert element_notify.inner_text() == "You have been successfully logged in"
-    page.reload()
+    page.get_by_role("button", name="Add car").click()
+    page.get_by_label("Brand").select_option("3: 4")
+    # assert page.get_by_label("Brand").inner_text() == "Porshe"
+    page.get_by_label("Model").select_option("6: 17")
+    # assert page.get_by_label("Model").inner_text() == "Cayenne"
+    page.get_by_role("spinbutton", name="Mileage").click()
+    page.get_by_role("spinbutton", name="Mileage").fill("880")
+    page.get_by_role("button", name="Add").click()
     return page
 
