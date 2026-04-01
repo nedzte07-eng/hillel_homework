@@ -1,6 +1,7 @@
 import os
 import pytest
 from dotenv import load_dotenv
+from playwright.sync_api import Page, expect
 
 load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hillel_homework\.env")
 
@@ -12,24 +13,29 @@ BASIC_AUTH_PASS = os.getenv("RC1_ORION_BASIC_PASS")
 
 
 @pytest.fixture(scope="session")
-def logged_in_context(browser):
-    context = browser.new_context(
-        http_credentials={"username": BASIC_AUTH_USER, "password": BASIC_AUTH_PASS}
-    )
-    page = context.new_page()
-    page.goto(f"{BASE_URL}/login")
-    page.fill('input[name="email"]', USER_EMAIL)
-    page.fill('input[name="password"]', USER_PASSWORD)
-    page.click('button[type="submit"]')
-    # після логіну cookies вже збережені в context
-    page.close()
-    yield context
+def browser_context_args(browser_context_args):
+    return {
+        **browser_context_args,
+        "http_credentials": {
+            "username": BASIC_AUTH_USER,
+            "password": BASIC_AUTH_PASS
+        },
+        'base_url' : BASE_URL,
+    }
+
 
 
 @pytest.fixture(scope="function")
-def ui_login(logged_in_context):
-    logged_in_context.tracing.start(screenshots=True, snapshots=True, sources=True)
-    page = logged_in_context.new_page()
-    page.goto(f"{BASE_URL}")
+def ui_login(page:Page):
+    # logged_in_context.tracing.start(screenshots=True, snapshots=True, sources=True))
+    page.goto("/admin/login")
+    page.fill('input[name="email"]', USER_EMAIL)
+    page.fill('input[name="password"]', USER_PASSWORD)
+    page.click('button[type="submit"]')
+
+    # після логіну cookies вже збережені в context
+    expect(page.locator("span.account-user-name")).to_have_text("Sasha Nedzelnytsky")
+    page.reload()
     yield page
-    logged_in_context.tracing.stop(path="trace.zip")
+    # yield page
+    # logged_in_context.tracing.stop(path="trace.zip")
