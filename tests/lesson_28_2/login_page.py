@@ -1,9 +1,9 @@
 import os
 
 from dotenv import load_dotenv
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
-load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hillel_homework\.env")
+load_dotenv(dotenv_path=r"/.env")
 
 
 class LoginPage:
@@ -22,6 +22,10 @@ class LoginPage:
         self.page.goto(self._ui_url)
         return self
 
+    def sign_in_button_click(self):
+        self._button_sign_in.click()
+        return self
+
     def enter_email(self, email: str):
         self._email_input.fill(email)
         return self
@@ -32,11 +36,12 @@ class LoginPage:
 
     def submit_button(self):
         self._submit_button.click()
-        from garage_page import GaragePage
+        from tests.lesson_28_2.garage_page import GaragePage
         return GaragePage(self.page)
 
     def submit(self, email: str, password: str):
         """Комбінований метод для входу (ланцюжок)"""
+        self.sign_in_button_click()
         self.enter_email(email)
         self.enter_password(password)
         return self.submit_button()
