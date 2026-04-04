@@ -1,7 +1,7 @@
 import os
 
 from playwright.sync_api import expect
-from lesson_28_2.pages.login_page import LoginPage
+from pages.login_page import LoginPage
 
 UI_URL = os.getenv("API_URL")
 EMAIL = os.getenv("EMAIL")
