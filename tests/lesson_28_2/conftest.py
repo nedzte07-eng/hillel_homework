@@ -9,8 +9,6 @@ load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hi
 ui_url = os.getenv('API_URL')
 auth_user = os.getenv('AUTH_BASIC_USER')
 auth_password = os.getenv('AUTH_BASIC_PASSWORD')
-login = os.getenv('EMAIL')
-password = os.getenv('PASSWORD')
 
 
 @pytest.fixture(scope="session")

@@ -15,4 +15,9 @@ def test_login_to_garage(page):
     garage = login.navigate().submit(EMAIL, PASSWORD)
 
     expect(garage.get_alert_success()).to_have_text("You have been successfully logged in")
-    garage.click_button_add_car()
+    garage.add_car()
+    expenses = garage.expenses_click()
+    expect(expenses.get_header_name()).to_have_text("Fuel expenses")
+
+    return garage
+
