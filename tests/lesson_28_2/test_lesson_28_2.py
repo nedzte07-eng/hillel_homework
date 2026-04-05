@@ -9,7 +9,7 @@ PASSWORD = os.getenv("PASSWORD")
 
 
 
-def test_login_to_garage(page):
+def test_add_car_add_expenses_delete_car(page):
     login = LoginPage(page)
 
     garage = login.navigate().submit(EMAIL, PASSWORD)
@@ -19,6 +19,9 @@ def test_login_to_garage(page):
     expenses = garage.expenses_click()
     expect(expenses.get_header_name()).to_have_text("Fuel expenses")
     expenses.add_expenses()
+    garage = (expenses.garage_click())
+    expect(garage.get_header_name()).to_have_text("Garage")
+    garage.delete_car()
 
     return garage
 

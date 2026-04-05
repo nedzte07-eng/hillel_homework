@@ -6,6 +6,7 @@ class FuelExpensesPage:
         self._page = page
         self._header_name = page.get_by_role("heading", name="Fuel expenses")
         self._button_add_expenses = page.get_by_role("button", name="Add an expense")
+        self._garage_button = page.locator('//a[@routerlink="garage"]')
 
     def get_header_name(self):
         return self._header_name
@@ -19,6 +20,11 @@ class FuelExpensesPage:
         self._page.get_by_role("button", name="Add").click()
         expect(self._page.locator("p:has-text('Fuel expense added')")).to_be_visible()
         return self._page
-        return True
+
+    def garage_click(self):
+        self._garage_button.click()
+        from tests.lesson_28_2.garage_page import GaragePage
+        return GaragePage(self._page)
+
 
 
