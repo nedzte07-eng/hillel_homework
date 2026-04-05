@@ -18,6 +18,7 @@ def test_login_to_garage(page):
     garage.add_car()
     expenses = garage.expenses_click()
     expect(expenses.get_header_name()).to_have_text("Fuel expenses")
+    expenses.add_expenses()
 
     return garage
 

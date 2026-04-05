@@ -7,6 +7,7 @@ class GaragePage:
         self._alert_success = page.locator('//div[@class="alert alert-success"]')
         self._button_add_car = page.get_by_role("button", name="Add car")
         self._expenses_button = page.locator('//a[@routerlink="expenses"]')
+        self._button_delete_car = page.locator('span.icon.icon-edit')
 
     def get_alert_success(self):
         return self._alert_success
@@ -26,7 +27,10 @@ class GaragePage:
 
     def expenses_click(self):
         self._expenses_button.click()
-        from tests.lesson_28_2.fuel_expences_page import FuelExpencesPage
-        return FuelExpencesPage(self._page)
+        from tests.lesson_28_2.fuel_expences_page import FuelExpensesPage
+        return FuelExpensesPage(self._page)
+
+    def delete_car(self):
+        return True
 
 
