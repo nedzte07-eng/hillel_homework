@@ -4,7 +4,7 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import expect, Page
 
-load_dotenv(dotenv_path=r"C:\Users\nedzt\Documents\Study\QA Automation Python\hillel_homework\.env")
+load_dotenv()
 
 ui_url = os.getenv('API_URL')
 auth_user = os.getenv('AUTH_BASIC_USER')

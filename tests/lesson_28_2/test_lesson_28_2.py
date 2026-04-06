@@ -22,6 +22,3 @@ def test_add_car_add_expenses_delete_car(page):
     garage = (expenses.garage_click())
     expect(garage.get_header_name()).to_have_text("Garage")
     garage.delete_car()
-
-    return garage
-

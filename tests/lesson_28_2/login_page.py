@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from playwright.sync_api import Page
 
-load_dotenv(dotenv_path=r"/.env")
+load_dotenv()
 
 
 class LoginPage:

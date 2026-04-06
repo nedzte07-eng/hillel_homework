@@ -9,18 +9,21 @@ class GaragePage:
         self._expenses_button = page.locator('//a[@routerlink="expenses"]')
         self._button_delete_car = page.locator('span.icon.icon-edit')
         self._header_name = page.get_by_role("heading", name="Garage")
+        self._add_car_modal_title = page.locator("h4.modal-title")
+        self._brand_selector = page.get_by_label("Brand")
+        self._model_selector = page.get_by_label("Model")
+        self._milleage_selector = page.get_by_role("spinbutton", name="Mileage")
 
     def get_alert_success(self):
         return self._alert_success
 
     def add_car(self):
         self._button_add_car.click()
-        expect(self._page.locator("h4.modal-title")).to_have_text("Add a car")
-        self._page.get_by_label("Brand").select_option("3: 4")
-        self._page.get_by_label("Model").select_option("6: 17")
-        # assert page.get_by_label("Model").inner_text() == "Cayenne"
-        self._page.get_by_role("spinbutton", name="Mileage").click()
-        self._page.get_by_role("spinbutton", name="Mileage").fill("880")
+        expect(self._add_car_modal_title).to_have_text("Add a car")
+        self._brand_selector.select_option("3: 4")
+        self._model_selector.select_option("6: 17")
+        self._milleage_selector.click()
+        self._milleage_selector.fill("880")
         self._page.get_by_role("button", name="Add").click()
         expect(self._page.locator("p:has-text('Car added')")).to_be_visible()
         return self._page
