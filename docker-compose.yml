@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 569300
+      POSTGRES_DB: lesson29
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    depends_on:
+      - db
