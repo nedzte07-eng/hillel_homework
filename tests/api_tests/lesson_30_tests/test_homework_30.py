@@ -85,29 +85,29 @@ class TestContent:
                 assert data_car["logo"] == "bmw.png"
 
 
-    @pytest.mark.external_api
-    @allure.story("Check negative if the car is added to garage")
-    @allure.title("Checking presence of a car in the garage list - NEGATIVE test")
-    @allure.description("Ensure that a car is present via API - NEGATIVE test")
-    def test_if_car_is_present_200_failed_intentionally(self, car_data):
-        data_car = car_data.json()["data"][0]
-        with allure.step("Validation of that car is present in garage intentionally failed"):
-            with allure.step("Assert the status code"):
-                assert car_data.status_code == 200, "Response status code is incorrect"
-            with allure.step("Assert that id in response is not empty"):
-                assert data_car["id"] is not None, "Id was not created"
-            with allure.step("Assert that carBrandId in response is correct - should fail here"):
-                assert data_car["carBrandId"] == 4
-            with allure.step("Assert that carModelId in response is correct"):
-                assert data_car["carModelId"] == 8
-            with allure.step("Assert that initialMileage in response is correct"):
-                assert data_car["initialMileage"] == 555
-            with allure.step("Assert that brand in response is correct"):
-                assert data_car["brand"] == "BMW"
-            with allure.step("Assert that model in response is correct"):
-                assert data_car["model"] == "X5"
-            with allure.step("Assert that logo in response is correct"):
-                assert data_car["logo"] == "bmw.png"
+    # @pytest.mark.external_api
+    # @allure.story("Check negative if the car is added to garage")
+    # @allure.title("Checking presence of a car in the garage list - NEGATIVE test")
+    # @allure.description("Ensure that a car is present via API - NEGATIVE test")
+    # def test_if_car_is_present_200_failed_intentionally(self, car_data):
+    #     data_car = car_data.json()["data"][0]
+    #     with allure.step("Validation of that car is present in garage intentionally failed"):
+    #         with allure.step("Assert the status code"):
+    #             assert car_data.status_code == 200, "Response status code is incorrect"
+    #         with allure.step("Assert that id in response is not empty"):
+    #             assert data_car["id"] is not None, "Id was not created"
+    #         with allure.step("Assert that carBrandId in response is correct - should fail here"):
+    #             assert data_car["carBrandId"] == 4
+    #         with allure.step("Assert that carModelId in response is correct"):
+    #             assert data_car["carModelId"] == 8
+    #         with allure.step("Assert that initialMileage in response is correct"):
+    #             assert data_car["initialMileage"] == 555
+    #         with allure.step("Assert that brand in response is correct"):
+    #             assert data_car["brand"] == "BMW"
+    #         with allure.step("Assert that model in response is correct"):
+    #             assert data_car["model"] == "X5"
+    #         with allure.step("Assert that logo in response is correct"):
+    #             assert data_car["logo"] == "bmw.png"
 
 
     @pytest.mark.external_api
