@@ -15,7 +15,7 @@ logger.addHandler(console_handler)
 
 load_dotenv()
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def base_url():
     BASE_URL = os.getenv("API_URL")
     return BASE_URL
